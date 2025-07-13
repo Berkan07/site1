@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seninle Her Şey Daha Güzel</title>
+  <style>
+    body {
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Georgia', cursive;
+      color: #fff;
+      text-align: center;
+      padding: 50px 20px;
+      text-shadow: 1px 1px 5px #000;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 22px;
+      max-width: 700px;
+      margin: 20px auto;
+      background-color: rgba(0,0,0,0.3);
+      padding: 20px;
+      border-radius: 15px;
+    }
+
+    .heart {
+      animation: float 3s infinite;
+      font-size: 40px;
+      color: red;
+      margin: 10px;
+      text-shadow: 1px 1px 3px #000;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0); }
+    }
+
+    .book-icon {
+      font-size: 40px;
+      color: darkred;
+      cursor: pointer;
+      margin: 30px auto;
+      transition: transform 0.3s;
+    }
+
+    .book-icon:hover {
+      transform: scale(1.2);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0; top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    .slider {
+      position: relative;
+      max-width: 90%;
+      max-height: 80vh;
+      margin: 60px auto;
+    }
+
+    .slider img {
+      max-width: 100%;
+      max-height: 70vh;
+      width: auto;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 0 10px #000;
+    }
+
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 40px;
+      background-color: rgba(255,255,255,0.2);
+      color: white;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    .prev { left: 0; }
+    .next { right: 0; }
+
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 30px;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🌸 Canım Sevgilim Doğa'ya 🌸</h1>
+  <p>Bu site, sana olan sevgimin küçük bir yansıması...</p>
+
+  <div class="heart">❤️ ❤️ ❤️ ❤️ ❤️</div>
+
+  <p>
+    Seninle tanıştığım günden beri her şey değişti...<br>
+    Gülüşün içimi ısıtan güneş gibi, sesin en sevdiğim melodi...<br>
+    Sana her baktığımda içim huzur doluyor, seni her düşündüğümde kalbim bir başka çarpıyor.<br><br>
+    İyi ki varsın, iyi ki hayatımdasın. Seni çok ama çok seviyorum...
+  </p>
+
+  <!-- Kitap simgesi -->
+  <div class="book-icon" onclick="document.getElementById('modal').style.display='block'">📕</div>
+
+  <!-- Modal galeri -->
+  <div id="modal" class="modal">
+    <span class="close" onclick="document.getElementById('modal').style.display='none'">&times;</span>
+    <div class="slider">
+      <button class="nav-btn prev" onclick="changeSlide(-1)">❮</button>
+      <img id="sliderImage" src="photo_1.jpg" alt="Galeri">
+      <button class="nav-btn next" onclick="changeSlide(1)">❯</button>
+    </div>
+  </div>
+
+  <!-- Müziği Başlat Butonu -->
+  <button id="playMusicBtn" style="
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: darkred;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 30px;
+    box-shadow: 0 0 10px black;
+  ">
+    🎵 Müziği Başlat
+  </button>
+
+  <!-- Müzik Dosyası -->
+  <audio id="backgroundMusic" loop>
+    <source src="music.mp3" type="audio/mpeg" />
+    Tarayıcınız müziği desteklemiyor.
+  </audio>
+
+  <script>
+    let images = ["photo_1.jpg", "photo_2.jpg"];
+    let current = 0;
+
+    function changeSlide(direction) {
+      current += direction;
+      if (current >= images.length) current = 0;
+      if (current < 0) current = images.length - 1;
+      document.getElementById("sliderImage").src = images[current];
+    }
+
+    // Müziği başlatma işlemi
+    const music = document.getElementById('backgroundMusic');
+    const button = document.getElementById('playMusicBtn');
+
+    button.addEventListener('click', () => {
+      music.play();
+      button.style.display = 'none'; // Butonu gizle
+    });
+  </script>
+</body>
+</html>
